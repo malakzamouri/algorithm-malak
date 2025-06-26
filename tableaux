@@ -1,0 +1,74 @@
+ VAR
+ i=0;
+ sum = 0;
+ set 3, sum, elt. INTEGER;
+ set 1 : ARRAY_OF INTEGER[3, 1, 7, 9]
+ Set 2: ARRAY_OF INTEGER [2, 4, 1, 9, 3]
+ BEGIN
+
+  FOR i FROM 0 TO 4 STEP 1  DO   
+ IF (st1[i]<>str2[i]) THEN 
+set 3 == AR
+Set1_Size, Set2_Size: INTEGER;
+str_element: STRING;
+num_element: INTEGER;
+Set1, Set2 : ARRAY OF INTEGER;
+uniqueSet1, uniqueSet2 : SET OF INTEGER;
+distinctElements : LIST OF INTEGER;
+sum : INTEGER;
+i : INTEGER;
+
+BEGIN
+
+Initialization:
+sum := 0;
+distinctElements := EMPTY_LIST;
+
+Read Input for Set 1:
+Write("Enter the number of elements for Set 1:");
+Read(Set1_Size);
+RESIZE Set1 TO Set1_Size;
+FOR i FROM 0 TO Set1_Size - 1 STEP 1 DO
+Write("Enter element " + (i + 1) + " for Set 1:");
+Read(str_element);
+num_element := CONVERT_TO_INTEGER(str_element);
+Set1[i] := num_element;
+END FOR
+
+Read Input for Set 2:
+Write("Enter the number of elements for Set 2:");
+Read(Set2_Size);
+RESIZE Set2 TO Set2_Size;
+FOR i FROM 0 TO Set2_Size - 1 STEP 1 DO
+Write("Enter element " + (i + 1) + " for Set 2:");
+Read(str_element);
+num_element := CONVERT_TO_INTEGER(str_element);
+Set2[i] := num_element;
+END FOR
+
+Convert Arrays to Unique Sets:
+uniqueSet1 := CONVERT_ARRAY_TO_SET(Set1);
+uniqueSet2 := CONVERT_ARRAY_TO_SET(Set2);
+
+Find Elements Unique to uniqueSet1:
+FOR EACH element IN uniqueSet1 DO
+IF element IS NOT PRESENT IN uniqueSet2 THEN
+sum := sum + element;
+ADD element TO distinctElements;
+END IF
+END FOR
+
+FOR EACH element IN uniqueSet2 DO
+IF element IS NOT PRESENT IN uniqueSet1 THEN
+sum := sum + element;
+ADD element TO distinctElements;
+END IF
+END FOR
+
+Output Results:
+Write("Set 1 : [" + JOIN_WITH_COMMA(Set1) + "]");
+Write("Set 2 : [" + JOIN_WITH_COMMA(Set2) + "]");
+Write("Distinct elements: [" + JOIN_WITH_COMMA(distinctElements) + "]");
+Write("Output: " + sum);
+
+END
